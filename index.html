@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>JavaScript Objects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link href="stylesheets/theme.css" rel="stylesheet" type="text/css">
+    <script src="javascripts/rainbow.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Phillip Wigginton</h1>
+      <h2 class="project-tagline">CIT 261</h2>
+
+    </section>
+
+    <section class="main-content">
+      <h1>JavaScript Objects</h1>
+
+      <h2>Object Basics</h2>
+
+          <p>Think of objects you see in everyday life.</p>
+          <p>A dog, for example, is an object and has properties</p>
+		  <p><strong>Properties</strong> can be things such as weight, breed, age, or color and are the named values in JavaScript objects</p>
+		  <p>While <strong>methods</strong> are actions that can be performed on objects</p>
+              <table>
+                <tr>
+                <th style="width:370px">
+                Object
+                </th>
+                <th>
+                Properties
+                </th>
+                <th>
+                Methods
+                </th>
+                </tr>
+                <tr>
+                <td>
+                <img src="img/BlackLab.png" style="width:250px;height:254px;">
+                </td>
+                <td>
+                <br>dog.breed = labrador<br><br>
+                dog.age = 3yrs<br><br>
+                dog.weight = 70lbs<br><br>
+                dog.color = black
+                </td>
+                <td>
+                <br>dog.run()<br><br>
+                dog.fetch()<br><br>
+                dog.eat()<br><br>
+				dog.sit()</td>
+                </tr>
+              </table>
+          
+        <p>JavaScript has a number of predefined objects such as:</p> 
+			 <table>
+                <tr>
+                <th style="width: 150px">
+                Object Name
+                </th>
+                <th>
+                Purpose
+                <tr>
+                <td>
+                Arrays<br><br>
+				Boolean<br><br>
+				Date<br><br>
+				Number<br><br>
+				String
+                </td>
+                <td>
+                Stores multiple values as a single variable<br><br>
+                Stores either true or false<br><br>
+                Stores Date and Time<br><br>
+                Stores numeric value<br><br>
+				Stores Text
+                </td>
+            
+              </table>
+				
+		<p>Additionally, we are free to breed our own objects.</p>
+		
+		<h2> Creating Objects</h2>
+		
+		<p>In order to breed an object in javascript you must declare the object. To declare an object simply use the keyword <code>var</code> followed by the object name.</p>
+		 <pre><code data-language="javascript">var objectname</code></pre>
+		 <p>Sometimes we like to have an "object type" that can be used to create many objects of one type.The standard way to create an "object type" is to use an object constructor function:<p>
+		 
+		 <pre><code data-language="javascript">function dog(breed, age, weight, color) {
+  this.breed = breed;
+  this.age = age;
+  this.weight = weight;
+  this.color = color;
+  }</code></pre>
+		 
+		 <p> You can create an object using the the keyword <code>new</code> using that constructor:
+		 <pre><code data-language="javascript">var objectname = new FunctionName
+var kevin = new Dog())</code></pre>
+
+	<h2>Example</h2>
+	<p>in this example, we will use a constructor function to allow us to create a new dog object. 
+	We will take user inputs to create properties and then use those properties to display some generated text</p>
+	
+			<br> <pre><code data-language="javascript">function createDog() {
+
+//Retreive inputs from user                    
+var dogBreed = document.getElementById("dogBreed").value;
+var dogAge = document.getElementById("dogAge").value;
+var dogWeight = document.getElementById("dogWeight").value;
+var dogColor = document.getElementById("dogColor").value;
+
+//Create a constructor function for dog					 
+function dog(breed, age, weight, color) {
+	this.breed = breed;
+	this.age = age;
+	this.weight = weight;
+	this.color = color;
+}
+
+//creat a myDog object
+var myDog = new dog(dogBreed, dogAge, dogWeight, dogColor);
+
+//output a string using properties					
+document.getElementById("dogOutput").innerHTML = "I own a " + myDog.color +
+ " " + myDog.breed + " that is " + myDog.age + " years old."
++ " and weighs " + myDog.weight + " pounds.";
+}</code></pre>	
+	
+		Breed<br> <input type="text" id="dogBreed"><br>
+		Age (in years)<br> <input type="int" id="dogAge"><br>
+        Weight (in lbs)<br> <input type="text" id="dogWeight"><br>
+		Color<br> <input type="text" id="dogColor"><br><br>
+       <button onclick="createDog()">My Dog</button>
+       <div id="dogOutput"></div>
+
+
+
+<script type="text/javascript">
+            function createDog() {
+                    
+                    var dogBreed = document.getElementById("dogBreed").value;
+					var dogAge = document.getElementById("dogAge").value;
+					var dogWeight = document.getElementById("dogWeight").value;
+					var dogColor = document.getElementById("dogColor").value;
+					 
+					function dog(breed, age, weight, color) {
+						this.breed = breed;
+						this.age = age;
+						this.weight = weight;
+						this.color = color;
+					}
+
+					 var myDog = new dog(dogBreed, dogAge, dogWeight, dogColor);
+					
+					document.getElementById("dogOutput").innerHTML = "I own a " + myDog.color + " " + myDog.breed + " that is " + myDog.age + " years old."
+					+ " and weighs " + myDog.weight + " pounds."; 
+            }
+        </script>
+
+      <footer class="site-footer">
+
+        <h6><span class="site-footer-credits"><a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span></h6>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
