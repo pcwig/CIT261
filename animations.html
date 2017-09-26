@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>JavaScript Objects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link href="stylesheets/theme.css" rel="stylesheet" type="text/css">
+    <script src="javascripts/rainbow.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Phillip Wigginton</h1>
+      <h2 class="project-tagline">CIT 261</h2>
+
+    </section>
+
+    <section class="main-content">
+      <h1>CSS3 Animations</h1>
+
+          <p>Keyframes and Animations work together to make an animated element.</p>
+          <p><strong>Keyframes</strong> are what the animation does such as where it moves or how much it expands.</p>
+		  <p><strong>Animation</strong> is how it's done. Think speed, timing, duration etc.</p>
+	
+		<h2>Keyframes</h2>
+		<p>The @keyframe rule allows you to make changes in the animation code. These changes set the CSS style to whatever
+		you want within the animation time frame. this can be done multiple times at whatever points you want.</p>
+		<p>As an example, if you wanted to change the width of an element you it could look something like this.</p>
+		 <pre><code data-language="css">@keyframes widthChange {
+    from {width:100px;}
+    to {width:200px;}
+    }
+    
+	OR
+	
+@keyframes widthChange {
+    0% {width:100px;}
+    100% {width:200px;}	
+    }</code></pre>
+	<h3>Example 1</h3>
+	<div class ="example1" style="position: relative; margin-bottom: 5px"></div>
+	
+				 <style>
+	 .example1 {
+		width: 100px;
+		height: 100px;
+		background: red;
+		position :relative;
+		animation: changewidth1 3s infinite;
+	}
+	@keyframes changewidth1 {
+		0% {width:100px;}
+		100% {width:200px;}
+	}
+	</style>
+
+	
+	<p>The 'to' and 'from' represent 0% through the animation time and 100% through the animation time.
+	 These percentages represent the time within the alloted animation time when things will change.</p>
+	<p>You may add more changes by adding additional percentages like so.</p>
+	
+	 <pre><code data-language="css">@keyframes changeWidth {
+		0% {width: 100px;}
+		25%  {width: 600px;}
+		75%  {width: 50px}
+		100% {width: 100px;}
+	}</code></pre>		
+	<h3>Example 2</h3>
+	<div class ="example2" style="position: relative; margin-bottom: 5px"></div>
+			
+				 <style>
+	 .example2 {
+		width: 100px;
+		height: 100px;
+		background: blue;
+		position :relative;
+		animation: changewidth2 10s infinite;
+	}
+	@keyframes changewidth2 {
+		0% {width: 100px;}
+		25%  {width: 600px;}
+		75%  {width: 50px}
+		100% {width: 100px;}
+	}
+	</style>
+
+			<h2>Animation</h2>
+			<p>The animation propery has eight different values it can use to change how the animation reacts.</p><br>
+			
+			<table>
+	  <tr>
+		<th>Value</th>
+		<th>Description</th>
+	  </tr>  
+	  <tr>
+		<td>animation-name</td>
+		<td>Specifies the name of the keyframe you want to bind to the selector</td>
+	  </tr>
+	  <tr>
+		<td>animation-duration</td>
+		<td>Specifies how many seconds or milliseconds an animation takes to complete</td>
+	  </tr>
+	  <tr>
+		<td>
+	 animation-timing-function</td>
+		<td>Specifies the speed curve of the animation</td>
+	  </tr>
+	  <tr>
+		<td>animation-delay</td>
+		<td>Specifies a delay before the animation will start</td>
+	  </tr>
+	  <tr>
+		<td>animation-iteration-count</td>
+		<td>Specifies how many times an animation should be played</td>
+	  </tr>
+	  <tr>
+		<td>animation-direction</td>
+		<td>Specifies whether or not the animation should play in reverse on alternate cycles</td>
+	  </tr>
+	  <tr>
+		<td>animation-fill-mode</td>
+		<td>Specifies what values are applied by the animation outside the time it is executing</td>
+	  </tr>
+	  <tr>
+		<td>animation-play-state></td>
+		<td>Specifies whether the animation is running or paused</td>
+	  </tr>
+	</table><br>
+
+	<p>These values can be written out individually or in shorthand as so.</p><br>
+	<pre><code data-language="css">animation-name: test;
+animation-duration: 0s;
+animation-timing-function: ease;
+animation-delay: 0s;
+animation-iteration-count: 1;
+animation-direction: normal;
+animation-fill-mode: none;
+animation-play-state: running;
+
+OR 
+
+animation: test 0s ease 0s 1 normal none running;}</code></pre>
+<p>Each of these values has a default property so if you don't chose something it will fill in the default value.</p>
+
+<h2>Putting it together</h2>
+
+<p>Here is full code from Example 1 with the animation property.</p>
+<pre><code data-language="css">.example2 {
+	width: 100px;
+	height: 100px;
+	background: blue;
+	position :relative;
+	animation: changewidth2 10s infinite;
+	}
+@keyframes changewidth2 {
+	0% {width: 100px;}
+	25%  {width: 600px;}
+	75%  {width: 50px;}
+	100% {width: 100px;}</code></pre>
+	<div class ="example2" style="position: relative; margin-bottom: 5px"></div>
+	
+	<p>And another one slightly more complex</p>
+	
+	<pre><code data-language="css"></code>.example3 {
+    font-size:100px;
+    animation-name: slideAround;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    }
+	 
+@keyframes slideAround {
+    0% {
+        color: red; 
+        left: 0px; 
+        top: 0px;
+    }
+	
+    25%  {
+        color: yellow;
+        left: 200px; 
+        top: 0px;
+    }
+		
+    50%  {
+        text-color: blue; 
+        left: 200px; 
+        top: 200px;
+    }
+		
+    75%  {
+        color: green; 
+        left: 0px; 
+        top: 200px;
+    }
+    100% {
+        color: red; 
+        left: 0px; 
+        top: 0px;
+    }</pre>
+	
+	
+	<div class ="example3" style="position: relative; margin-bottom: 200px"><p>Here We GO!</p></div>
+	<style>
+	.example3 {
+        font-size:100px;
+		animation-name: slideAround;
+   		animation-duration: 5s;
+      	animation-timing-function: linear;
+    	animation-delay: 2s;
+    	animation-iteration-count: infinite;
+    	animation-direction: alternate;
+            }
+	 @keyframes slideAround {
+         0%   {
+        color: red; 
+        left: 0px; 
+        top: 0px;}
+		25%  {
+			color: yellow;
+			left: 200px; 
+			top: 0px;
+		}
+		50%  {
+			text-color: blue; 
+			left: 200px; 
+			top: 200px;
+		}
+		75%  {
+			color: green; 
+			left: 0px; 
+			top: 200px;
+		}
+		100% {
+			color: red; 
+			left: 0px; 
+			top: 0px;
+		}
+            }
+		</style>
+		
+		<h3>Sources:</h3>
+        <ul>
+          <li><a href="http://www.w3schools.com/cssref/css3_pr_animation.asp">w3schools - CSS Animation Property</a></li>
+		  <li><a href="http://www.w3.org/TR/css3-transitions/#properties-from-css-">W3.org - CSS Transitions (List)</a></li>
+          <li><a href="http://www.w3schools.com/css/css3_animations.asp">w3Schools - CSS3 Animations</a></li>
+        </ul>
+            
+	
+		
+      <footer class="site-footer">
+
+        <h6><span class="site-footer-credits"><a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span></h6>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
