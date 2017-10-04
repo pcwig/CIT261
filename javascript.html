@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link href="stylesheets/theme.css" rel="stylesheet" type="text/css">
+    <script src="javascripts/rainbow.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+</head>
+<body>
+<section class="page-header">
+    <h1 class="project-name">Phillip Wigginton</h1>
+    <h2 class="project-tagline">CIT 261</h2>
+    <nav id="primary_nav_wrap">
+        <ul>
+            <li class="current-menu-item"><a href="Home.html">Home</a></li>
+            <li><a href="#">Topics</a>
+                <ul>
+                    <li><a href="javascript.html">JSON</a></li>
+                    <li><a href="objects.html">JavaScript Objects</a></li>
+                    <li><a href="json.html">JSON</a></li>
+                    <li><a href="ajax.html">AJAX</a></li>
+                    <li><a href="localstorage.html">Local Storage</a></li>
+                    <li><a href="dom.html">DOM Manipulation</a></li>
+                    <li><a href="class-properties.html">Manipulating CSS Class Properties</a></li>
+                    <li><a href="css3ta.html">CSS3 Transistions and Animations</a></li>
+                    <li><a href="jsevents.html">JavaScript Events</a></li>
+                    <li><a href="tags.html">HTML5 Tags</a></li>
+                    <li><a href="transitions.html">CSS3 Transitions</a></li>
+                    <li><a href="animations.html">CSS3 Animations</a></li>
+                    <li><a href="transforms.html">CSS3 Transforms</a></li>
+
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+</section>
+
+<section class="main-content">
+    <h1>JavaScript</h1>
+
+    <h4>Variables</h4>
+
+    <p>Variables are containers for storing data values. A variable is a location within the computer's memory to store
+        data When we declare a variable the computer will reserve space within its memory for that variable.</p>
+    <p>This is how you declare a variable.</p>
+
+    <pre><code data-language="javascript">var idNumber;
+var name;
+var taxRate;</code></pre>
+
+    <p>You store a value within the variable by using the equals sign (=).</p>
+
+    <pre><code data-language="javascript">var idNumber = 445696;
+var name = "Jim";
+var taxRate = .06;</code></pre>
+
+    <h3>Loops</h3>
+
+    <p>Every loop includes a boolean condition. Each time the computer needs to decide if it should repeat the
+        statements inside a loop, the computer evaluates the loop's condition. If the condition evaluates to true,
+        then computer repeats the statements inside the loop. If the condition evaluates as false, the computer does
+        not repeat the inside statements but instead executing the program starting with the statements after the loop.
+    </p>
+    <p>There are four basic loops in JavaScript. They are:</p>
+
+    <p>While - Used for simple counting, a sentinel needs to be checked before the loop.</p>
+    <p>For - Used for simple counting loop.  </p>
+    <p>For Each - Causes statements inside of it to be repeated once for each element in an array or object.</p>
+    <p>Do While - Used for a simple counting loop, the statements need to be checked before the sentinel.</p>
+    <h4>While</h4>
+    <pre><code data-language="javascript">var i = 1;
+while (i < 3) {
+    window.alert(i);
+    i++;
+}</code></pre>
+
+    <h4>For</h4>
+   <pre><code data-language="javascript">for (var i = 1; i < 3; i++) {
+    window.alert(i);
+}</code></pre>
+
+    <h4>For Each</h4>
+    <pre><code data-language="javascript">var text = "";
+var i;
+for (i = 0; i < 5; i++) {
+    text += "The number is " + i + "<br>";
+}
+
+document.getElementById("demo").innerHTML = text;</code></pre>
+
+    <h4>Do While</h4>
+    <pre><code data-language="javascript">var i = 1;
+do {
+    window.alert(i);
+    i++;
+}
+while (i < 3);</code></pre>
+
+    <h3>Conditional Statements</h3>
+    <p>A computer must be able to make decisions. The computer makes decisions by evaluating a condition and if the
+        condition is true, then certain statements will be executed. If the condition is false, then the computer
+        selects a different set of statements to execute. </p>
+    <p>Here are the following Conditional statements:</p>
+    <p>If - Used when a true choice exists and the false choice does not exist.</p>
+    <p>If...Else... - Used when a true and false choice exists.</p>
+    <p>If...Else If...Else - Used when more than two choices exist. Each choice is based on different variables.</p>
+    <p>Switch - Used when more than two choices exist. Each choice is based on the same variable and uses equals (==).
+        Comparison Values are integers or string.</p>
+
+    <h4>If</h4>
+    <pre><code data-language="javascript">if (balance > 50) {
+    var interest = balance * 0.03;
+     balance += interest;
+{</code></pre>
+
+    <h4>If...Else</h4>
+    <pre><code data-language="javascript">var bonus;
+if (sales <= 1000) {
+    bonus = 20;
+}
+
+else {
+    bonus = 100;
+}
+
+var salary = sales * 0.10 + bonus;</code></pre>
+
+    <h4>If...Else If...Else</h4>
+    <pre><code data-language="javascript">var discount;
+if (cost < 100) {
+   discount = 0.10;
+}
+
+else if (cost < 250) {
+    discount = 0.15;
+}
+
+else if (cost < 400) {
+    discount = 0.18;
+}
+
+else {
+    discount = 0.20;
+}
+
+cost *= (1 - discount);</code></pre>
+
+    <h4>Switch</h4>
+    <pre><code data-language="javascript">var registerDate;
+switch(classStanding) {
+    case 'F':
+        registerDate = "Nov 23";
+        break;
+    case 'S':
+        registerDate = "Nov 17";
+        break;
+    case 'J':
+        registerDate = "Nov 12";
+        break;
+    case 'N':
+        registerDate = "Nov 6";
+        break;
+    default:
+        registerDate = "none";
+        window.alert("unknown class standing");
+        break;
+}
+
+        </code></pre>
+
+    <h3>Arrays</h3>
+    <p>An array is a collection of variables where each variable has the same data type. Each  variable in an array is
+        called and <b>element</b> and has an <b>index</b>, which tells you the location of data in the array.
+        A big advantage of using an array is that all the elements within the array can be declared, created, or
+        passed to a function as a whole.</p>
+
+    <p>Declaring an Array - var arrayName;</p>
+    <p>Creating an Array - arrayName = new Array(size);</p>
+    <p>You can initialize and array at the same time you declare and create it - var arrayName =
+        [value0, value1, ... valueN];</p>
+    <pre><code data-language="javascript">var scores = new Array(25);
+
+//or
+
+var scores = [10, 12, 13, 14, 15, 16, 17, 18];</code></pre>
+
+    <h3>Associative Arrays</h3>
+    <p>Arrays with named indexes are called associative arrays.</p>
+
+    <pre><code data-language="javascript">var person = [];
+person[0] = "James";
+person[1] = "Kenny";
+person[2] = "Sarah";
+document.getElementById("example0").innerHTML = person[0];
+document.getElementById("example1").innerHTML = person[1];
+document.getElementById("example2").innerHTML = person[2];</code></pre>
+
+    <h3>Result:</h3>
+    <p id="example0"></p>
+    <p id="example1"></p>
+    <p id="example2"></p>
+    <script>
+        var person = [];
+        person[0] = "James";
+        person[1] = "Kenny";
+        person[2] = "Sarah";
+        document.getElementById("example0").innerHTML = person[0];
+        document.getElementById("example1").innerHTML = person[1];
+        document.getElementById("example2").innerHTML = person[2];
+    </script>
+
+    <h3>Function Parameters</h3>
+    <p>Function parameters are the names listed in the function definition. Function arguments are the real values
+        passed to, and received by the function.</p>
+
+    <pre><code data-language="javascript">function average(a, b, c) {
+    var sum = a + b + c;
+    var avg = sum / 3;
+    return avg;
+}</code></pre>
+
+    <footer class="site-footer">
+
+        <h6><span class="site-footer-credits"><a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by
+            <a href="https://twitter.com/jasonlong">Jason Long</a>.</span></h6>
+    </footer>
+
+</section>
+
+
+</body>
+</html>
