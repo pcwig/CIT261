@@ -44,8 +44,122 @@
 
 <section class="main-content">
 
+    <h1>AJAX</h1>
+
+    <h2>AJAX Basics</h2>
+
+    <li>AJAX stands for <strong>Asynchronous JavaScript and XML</strong></li>
+    <li>Using AJAX allows a web page to update without having to use the refresh button.</li>
+    <li>You can send and receive information through JSON, XML, HTML and text files.</li><br>
+
+    <p>In order to request data you must creat a new object with the <code>XMLHttpsRequest()</code> function </p>
+
+    <pre><code data-language="javascript">function ajaxTest() {
+//creates a variable using the XMLHttpRequest
+    var request = new XMLHttpRequest();
+//Checks to make sure the data has loaded
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+//When loaded, prints out the data
+            document.getElementById("demo").innerHTML =
+            this.responseText;
+        }
+    };
+//opens the text file with the data
+    request.open("GET", "ajax_info.txt", true);
+    request.send();
+}</code></pre>
+    <div id="demo">
 
 
+        <button type="button" onclick="ajaxTest()">Request Text</button></div>
+    <p>If you would like to see the text file you can see it <a href="https://pcwig.github.io/CIT261/ajax_info.txt">Here</a>.</p>
+
+    <script>
+        function ajaxTest() {
+           //creates a variable using the XMLHttpRequest
+            var request = new XMLHttpRequest();
+            //Checks to make sure the data has loaded
+            request.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+             //When loaded, prints out the data
+                    document.getElementById("demo").innerHTML =
+                        this.responseText;
+                }
+            };
+            //opens the text file with the data
+            request.open("GET", "ajax_info.txt", true);
+            request.send();
+        }
+    </script>
+
+    <h2>Using JSON Files</h2>
+
+    <p>You can also request JSON files in order to asynchronously updade your webpage with no refreshing</p>
+    <p>A framework called JQUERY is often used to make this process easier but in this case I will show an example
+    with base AJAX</p>
+    <p>This code will take <a href="https://pcwig.github.io/CIT261/JSON-Examples/test1.json">this</a> JSON file
+    that I found online and using a loop, print out name, house, and years ruled of nobles.</p>
+
+    <pre><code data-language="javascript">var nobleContainer = document.getElementById("noble-info");
+btn.addEventListener("click", function() {
+    var ourRequest = new XMLHttpRequest();
+    ourRequest.open('GET', 'https://pcwig.github.io/CIT261/JSON-Examples/test1.json');
+    ourRequest.onload = function() {
+        if (ourRequest.status >= 200 && ourRequest.status < 400) {
+            var ourData = JSON.parse(ourRequest.responseText);
+            renderHTML(ourData);
+        } else {
+            console.log("We connected to the server, but it returned an error.");
+        }
+    };
+
+    ourRequest.send();
+});
+
+
+function renderHTML(data) {
+    var htmlString = "";
+
+    for (i = 0; i < data.length; i++) {
+        htmlString += "<p>" + data[i].nm + " was a noble of " + data[i].hse + " from " + data[i].yrs + ".";
+}
+
+nobleContainer.insertAdjacentHTML('beforeend', htmlString);
+}</code></pre>
+    <button id="btn">List of Nobles</button>
+    <div id="noble-info"></div>
+
+   <script>
+
+       var nobleContainer = document.getElementById("noble-info");
+       btn.addEventListener("click", function() {
+           var ourRequest = new XMLHttpRequest();
+           ourRequest.open('GET', 'https://pcwig.github.io/CIT261/JSON-Examples/test1.json');
+           ourRequest.onload = function() {
+               if (ourRequest.status >= 200 && ourRequest.status < 400) {
+                   var ourData = JSON.parse(ourRequest.responseText);
+                   renderHTML(ourData);
+               } else {
+                   console.log("We connected to the server, but it returned an error.");
+                        }
+           };
+            ourRequest.send();
+        });
+
+
+       function renderHTML(data) {
+           var htmlString = "";
+
+           for (i = 0; i < data.length; i++) {
+               htmlString += "<p>" + data[i].nm + " was a noble of " + data[i].hse + " from " + data[i].yrs + ".";
+
+
+           }
+
+           nobleContainer.insertAdjacentHTML('beforeend', htmlString);
+       }
+    </script>
 
     <footer class="site-footer">
 
