@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-us" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>JSON</title>
@@ -17,7 +17,7 @@
     <h2 class="project-tagline">CIT 261</h2>
     <nav id="primary_nav_wrap">
         <ul>
-            <li class="current-menu-item"><a href="home.html">Home</a></li>
+            <li class="current-menu-item"><a href="index.html">Home</a></li>
             <li><a href="#">Topics</a>
                 <ul>
                     <li><a href="javascript.html">JavaScript</a></li>
@@ -43,10 +43,180 @@
 </section>
 
 <section class="main-content">
-    <h1>Coming Soon</h1>
+    <h1>JSON</h1>
+
+    <h2>JSON Basics</h2>
+
+    <li>JSON stands for <strong>JavaScript Object Notation.</strong></li>
+    <li>Lightweight text-based open standard designed for human-readable data interchange.</li>
+    <li>Used in addition for serializing and transmitting structured data over network connections.</li>
+    <li>Meant to be easy for humans to read and write</li>
+
+    <h2>Datatypes</h2>
+
+    <li>Number: Integer and Float stores the same</li>
+    <li>String: Uses double quotes to distinguish</li>
+    <li>Boolean: True or False</li>
+    <li>Array: Ordered list of 0 or more values</li>
+    <li>Object: Unordered collection of key/value pairs</li><br>
+
+    <h2>JSON Syntax</h2>
+
+    <li>JSON uses key/value Pairs </li>
+    <pre><code data-language="javascript"></code>{“name”:”John”}</pre>
+
+    <li>Must use the specified data types</li>
+    <li>Uses double quotes around KEY and VALUE</li>
+    <li>File type is “.json”</li>
+
+    <h4>Example of a JSON File</h4>
+    <p>Here is a simple JavaScript object</p>
+    <pre><code data-language="javascript"></code>var person1 = {
+    firstName: "John",
+    lastName: "Smith",
+    age : 31,
+    livesInUS: true,
+}</pre>
+    <p>This is what it would look like if converted to JSON</p>
+    <pre><code data-language="javascript"></code>{
+    "firstName": "John",
+    "lastName: "Smith",
+    "age" : "31",
+    "livesInUS": "true",
+}</pre>
+
+    <h2>Stringify</h2>
+
+    <p>Where JSON can really help you, is by taking objects and turning them into a JSON string in order to send them to
+    somewhere else.</p>
+
+    <p>In order to do this us must use the <code>JSON.stringify</code> code</p>
+
+    <p>Using the "person1" example, we can store the JSON text into a variable like so:</p>
+
+    <pre><code data-language="javascript">var string = JSON.stringify(person1);</code></pre>
+    <button onclick="stringify()">Stringify</button>
+    <pre><div id="stringify"></div></pre>
+
+    <script type="text/javascript">
+        function stringify() {
+        var person1;
+        person1 = {
+            firstName: "John",
+            lastName: "Smith",
+            age: 31,
+            livesInUS: true,
+        };
+           var string = JSON.stringify(person1);
+           document.getElementById("stringify").innerHTML = string;
+        }
+    </script>
+
+    <h2>Parsing</h2>
+
+    <p>Parsing allows you to take the JSON file or string and put it back into a variable in order to use within
+    your program</p>
+    <p><p>In order to do this us must use the <code>JSON.parse</code> code</p></p>
+    <p>Using the string variable we used in the last example we can put the JSON string back into a JavaScript Variable
+    and then call certain parts of that variable as so:</p>
+
+    <pre><code data-language="javascript">//Take the string variable and change it back into an object with the parse command
+var parse = JSON.parse(string);
+//print out the first name and age
+document.getElementById("output").innerHTML = parse.firstName + ", " + parse.age ;</code></pre>
+
+    <button onclick="parse()">Parse</button>
+    <pre><div id="parse"></div></pre>
+
+    <script type="text/javascript">
+        function parse() {
+            var person1;
+            person1 = {
+                firstName: "John",
+                lastName: "Smith",
+                age: 31,
+                livesInUS: true,
+            };
+
+            var string = JSON.stringify(person1);
+
+            var parse = JSON.parse(string);
+            document.getElementById("parse").innerHTML = parse.firstName + ", " + parse.age ;
+        }
+    </script>
 
 
+    <br> <pre><code data-language="javascript">function jsonDemo() {
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
+    var age = document.getElementById("age").value;
+    var livesInUS = document.getElementById("livesInUS").value;
 
+    var person1 = {
+        firstName: firstName,
+        lastName: lastName,
+        age: age,
+        livesInUS: livesInUS,
+    };
+
+    var string = JSON.stringify(person1);
+        return string;
+    }
+
+function stringifyDemo() {
+    var string = jsonDemo();
+    document.getElementById("stringifyOutput").innerHTML = string;
+}
+
+function parseDemo() {
+    var string = jsonDemo();
+    var parse = JSON.parse(string);
+    document.getElementById("parseOutput").innerHTML = parse.firstName + ", " + parse.lastName
+    + ", " + parse.age + ", Lives in the U.S.?: " + parse.livesInUS;
+}</code></pre>
+
+    First Name<br> <input type="text" id="firstName"><br>
+    Last Name<br> <input type="int" id="lastName"><br>
+    Age<br> <input type="text" id="age"><br>
+    Live in the U.S. (true or false)<br> <input type="text" id="livesInUS"><br><br>
+    <p>Stringify button put's the created object into JSON text.</p>
+    <button onclick="stringifyDemo()">Stringify</button>
+    <pre><div id="stringifyOutput"></div></pre>
+    <p>Parse button returns that tex into an object and calls the individual pieces.</p>
+    <button onclick="parseDemo()">Parse</button>
+    <pre><div id="parseOutput"></div></pre>
+
+    <script type="text/javascript">
+        function jsonDemo() {
+
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            var age = document.getElementById("age").value;
+            var livesInUS = document.getElementById("livesInUS").value;
+
+            var person1 = {
+                firstName: firstName,
+                lastName: lastName,
+                age: age,
+                livesInUS: livesInUS,
+            };
+
+            var string = JSON.stringify(person1);
+            return string;
+        }
+        
+        function stringifyDemo() {
+            var string = jsonDemo();
+            document.getElementById("stringifyOutput").innerHTML = string;
+        }
+
+        function parseDemo() {
+            var string = jsonDemo();
+            var parse = JSON.parse(string);
+            document.getElementById("parseOutput").innerHTML = parse.firstName + ", " +
+                parse.lastName + ", " + parse.age + ", Lives in the U.S.?: " + parse.livesInUS;
+        }
+    </script>
     <footer class="site-footer">
 
         <h6><span class="site-footer-credits"><a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by
