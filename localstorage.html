@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-us" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Local Storage</title>
@@ -48,30 +48,175 @@
     <p>The <code>localStorage</code> API allows you to persist data on a client's machine that will persist even
         through a browser restart. Session storage only allows you to store data until the browser is closed.</p>
 
-    <p>Local Storage provides two objects for storing data on the client.</p>
-    <p><code>window.localStorage</code>- Stores data with no expiration date.</p>
-    <p><code>window.sessionStorage</code>- Stores data for one session, which means that data is lost when you close the browser. </p>
 
-    <h4><strong>Store simple data</strong></h4>
+    <h2>Store and Load simple data</h2>
 
     <p>To test the local storage functionality, use the inputs and their associated buttons, and then refresh the
-        page or restart the browser.</p>
+        page and press the "Load Data" button.</p>
 
-    <input type="text" name="textData" placeholder="Simple Text Data">
-    <button type="button" onclick="saveSimpleData('textData')">Save</button>
+
+    <input type="text" name="textData" id="textData" ><br>
+    <button type="button" onclick="saveData()">Save</button>
     <br>
 
-    <input type="number" name="numberData" placeholder="Simple Number Data">
-    <button type="button" onclick="saveSimpleData('numberData')">Save</button>
-    <br>
+    <button type="button" onclick="loadStoredValues()">Load Data</button><br>
+
+
+
+    <br> <pre><code data-language="javascript">function saveData(inputName) {
+    var text = document.getElementById("textData").value;
+    localStorage.setItem("data", text);
+}
+
+function loadStoredValues() {
+    document.getElementById("textData").value = localStorage.getItem("data");
+}</code></pre>
+
 
     <script>
-        function saveSimpleData(inputName) {
-            var text = document.querySelector("input[name='" + inputName + "']").value;
-            console.log("Saving " + inputName + ":", text);
-            localStorage.setItem(inputName, text);
+        function saveData() {
+            var text = document.getElementById("textData").value;
+            console.log("Saving text: " + text);
+            localStorage.setItem("data", text);
 
     }
+
+        function loadStoredValues() {
+            document.getElementById("textData").value = localStorage.getItem("data");
+        }
+    </script>
+
+    <h2>Store and Load Arrays</h2>
+    <p>You can only store strings in local storage, which means in order to stor things like arrays or objects
+    you must first change to another format such as JSON</p>
+
+    <pre><code data-language="javascript">function saveArray() {
+    var arrayText = document.getElementById("arrayTextArea").value;
+    var array   = arrayText.split(",");
+    localStorage.setItem("array", JSON.stringify(array));
+}
+function loadArray() {
+    document.getElementById("arrayTextArea").value = JSON.parse(localStorage.getItem("array")).join(',');
+}</code></pre><br>
+
+
+    <textarea cols="75" name="arrayTextArea" id="arrayTextArea" title="Array Input">Red,Blue,Green,Yellow</textarea><br>
+    <button type="button" onclick="saveArray()">Save</button><br>
+    <button type="button" onclick="loadArray()">Load Array</button><br>
+
+    <h2>Store and Load Objects</h2>
+
+    <pre><code data-language="javascript"> function saveObject() {
+    var value1 = document.getElementById("value1").value;
+    var value2 = document.getElementById("value2").value;
+
+    var object1 = {
+    country1: value1,
+    country2: value2,
+    };
+
+    var localObject = JSON.stringify(object1);
+    localStorage.setItem("testObject", localObject);
+    }
+
+function loadObject() {
+    var testObject = localStorage.getItem("testObject");
+    var parse = JSON.parse(testObject);
+    document.getElementById("objectOutput").innerHTML = "Country 1: " + parse.country1 + ", Country 2: " + parse.country2;
+}</code></pre>
+
+
+    First Name: <input type="text" name="value1" id="value1"><br>
+    Last Name: <input type="text" name="value1" id="value2"><br>
+    <button type="button" onclick="saveObject()">Save</button><br>
+    <button type="button" onclick="loadObject()">Load Data</button><br><br>
+    <textarea rows="1" cols="30" name="objectOutput" id="objectOutput" title="Array Input">Object</textarea><br>
+
+    <h2>Store and Load Associative Arrays</h2>
+
+    <pre><code data-language="javascript">function saveAssociativeArray() {
+    var person1 = document.getElementById("person1").value;
+    var person2 = document.getElementById("person2").value;
+    var person3 = document.getElementById("person3").value;
+
+    var person = [];
+    person[0] = person1;
+    person[1] = person2;
+    person[2] = person3;
+
+    var personJason = JSON.stringify(person);
+    console.log("storing:", personJason);
+    sessionStorage.setItem("testAssociativeArray", personJason);
+}
+
+function loadAssociativeArray() {
+    var testAssociativeArray = sessionStorage.getItem("testAssociativeArray");
+    var parse = JSON.parse(testAssociativeArray);
+    document.getElementById("associativeArrayOutput").innerHTML = "Person 1: " + parse[0] +
+    " | Person2: " + parse[1] + " | Person 3: " + parse[2];
+}</code></pre>
+
+
+    Person 1: <input type="text" name="person1" id="person1"><br>
+    Person 2: <input type="text" name="person2" id="person2"><br>
+    Person 2: <input type="text" name="person3" id="person3"><br>
+    <button type="button" onclick="saveAssociativeArray()">Save</button><br>
+    <button type="button" onclick="loadAssociativeArray()">Load Data</button><br><br>
+    <textarea rows="1" cols="50" name="associativeArrayOutput" id="associativeArrayOutput" title="Array Input">Associative Array</textarea>
+
+
+    <script type="text/javascript">
+        function saveArray() {
+
+            var arrayText = document.getElementById("arrayTextArea").value;
+            var array   = arrayText.split(",");
+            console.log("storing:", array);
+            localStorage.setItem("array", JSON.stringify(array));
+        }
+        function loadArray() {
+            document.getElementById("arrayTextArea").value = JSON.parse(localStorage.getItem("array")).join(',');
+        }
+
+        function saveObject() {
+            var value1 = document.getElementById("value1").value;
+            var value2 = document.getElementById("value2").value;
+
+            var object1 = {
+                firstName: value1,
+                lastName: value2,
+            };
+
+            var localObject = JSON.stringify(object1);
+            console.log("storing:", localObject);
+            localStorage.setItem("testObject", localObject);
+        }
+
+        function loadObject() {
+            var testObject = localStorage.getItem("testObject");
+            var parse = JSON.parse(testObject);
+            document.getElementById("objectOutput").innerHTML = "Person object: " + parse.firstName + " " + parse.lastName;
+        }
+        function saveAssociativeArray() {
+            var person1 = document.getElementById("person1").value;
+            var person2 = document.getElementById("person2").value;
+            var person3 = document.getElementById("person3").value;
+
+            var person = [];
+            person[0] = person1;
+            person[1] = person2;
+            person[2] = person3;
+
+            var personJason = JSON.stringify(person);
+            console.log("storing:", personJason);
+            sessionStorage.setItem("testAssociativeArray", personJason);
+        }
+
+        function loadAssociativeArray() {
+            var testAssociativeArray = sessionStorage.getItem("testAssociativeArray");
+            var parse = JSON.parse(testAssociativeArray);
+            document.getElementById("associativeArrayOutput").innerHTML = "Person 1: " + parse[0] + " | Person2: " + parse[1]
+            + " | Person 3: " + parse[2];
+        }
     </script>
 
     <br>
