@@ -43,9 +43,38 @@
 </section>
 
 <section class="main-content">
-    <h1>Coming Soon</h1>
+    <h1>Local Storage</h1>
 
+    <p>The <code>localStorage</code> API allows you to persist data on a client's machine that will persist even
+        through a browser restart. Session storage only allows you to store data until the browser is closed.</p>
 
+    <p>Local Storage provides two objects for storing data on the client.</p>
+    <p><code>window.localStorage</code>- Stores data with no expiration date.</p>
+    <p><code>window.sessionStorage</code>- Stores data for one session, which means that data is lost when you close the browser. </p>
+
+    <h4><strong>Store simple data</strong></h4>
+
+    <p>To test the local storage functionality, use the inputs and their associated buttons, and then refresh the
+        page or restart the browser.</p>
+
+    <input type="text" name="textData" placeholder="Simple Text Data">
+    <button type="button" onclick="saveSimpleData('textData')">Save</button>
+    <br>
+
+    <input type="number" name="numberData" placeholder="Simple Number Data">
+    <button type="button" onclick="saveSimpleData('numberData')">Save</button>
+    <br>
+
+    <script>
+        function saveSimpleData(inputName) {
+            var text = document.querySelector("input[name='" + inputName + "']").value;
+            console.log("Saving " + inputName + ":", text);
+            localStorage.setItem(inputName, text);
+
+    }
+    </script>
+
+    <br>
 
     <footer class="site-footer">
 
