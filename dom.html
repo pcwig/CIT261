@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link href="stylesheets/theme.css" rel="stylesheet" type="text/css">
     <script src="javascripts/rainbow.js"></script>
+    <link rel="stylesheet" href="stylesheets/enhance5.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
 </head>
 <body>
@@ -43,10 +44,116 @@
 </section>
 
 <section class="main-content">
-    <h1>Coming Soon</h1>
+    <h1>DOM Manipualtion</h1>
+
+    <p>The primary function of the <strong>Document Object Model</strong>is to view, access and change the
+        structure of an HTML document separate from the content contained with it.</p>
+
+    <p><strong>Dom Can be used to:</strong></p>
+    <ul>
+    <li>Change all the HTML elements in the page</li>
+    <li>Change all the HTML attributes in the page</li>
+    <li>Change all the CSS styles in the page</li>
+    <li>Remove existing HTML elements and attributes</li>
+    <li>Add new HTML elements and attributes</li>
+    <li>React to all existing HTML events in the page</li>
+    <li>Create new HTML events in the page</li>
+    </ul>
+
+    <p>One very simple example is used in many beginners first code. It is to fill a div with text by getting
+    an element by it's unique Id, then altering the html within that div. I've been using this from the beginning and
+    didn't realize it was considered DOM manipulation.</p>
+
+    <pre><code data-language="javascript">function fillDiv(){
+    document.getElementById("output1").innerHTML = "Hello World" ;
+}</code></pre>
+
+    <p>I collored this div to show where it is.</p>
+
+    <button type="button" onclick="fillDiv()">Click to fill the Div</button>
+    <div style="background-color: #D9D5CF; width: 200px; height: 150px; line-height: 150px; text-align: center;" id="output1" ></div>
+
+    <script>
+        function fillDiv(){
+            document.getElementById("output1").innerHTML = "Hello World" ;
+        }
+    </script>
+
+    <p></p>
+
+    <h3>The Element Object</h3>
+    <ul>
+        <li>In the HTML DOM, the Element object represents an HTML element.</li>
+        <li>Element objects can have child nodes of type element nodes, text nodes, or comment nodes.</li>
+        <li>A NodeList object represents a list of nodes, like an HTML element's collection of child nodes.</li>
+        <li>Elements can also have attributes. Attributes are attribute nodes (See next chapter).</li>
+    </ul>
+    <p>Using the element object can be a very powerful tool for manipulating HTML. Here is an example using a variety of element objects.</p>
+    <h2>Example</h2>
+
+    <p>Here is an example that uses createElement, appendChild, insertBefore, removeChild to show what can be done with
+    DOM</p>
+
+    <pre><code data-language="javascript">function createNewElement(color, append) {
+    var newElement = document.createElement("div");
+    newElement.className = "added-element " + color;
+    var buttonElement = document.createElement('button');
+    buttonElement.innerHTML = "Click Me to Remove!";
+    buttonElement.setAttribute("onclick", "removeElement(this.parentElement)");
+    newElement.appendChild(buttonElement);
+
+    var containerDiv = document.getElementById("dynamic-element-container");
+    if (append) {
+    containerDiv.appendChild(newElement);
+    }
+    else
+    {
+    containerDiv.insertBefore(newElement, containerDiv.childNodes[0]);
+    }
+}
+
+function removeElement(element) {
+    element.parentElement.removeChild(element);
+}
 
 
+    </code></pre>
 
+    <button type="button" onclick="createNewElement('black', false)">Add Black Element (Above)</button>
+    <button type="button" onclick="createNewElement('orange', true)">Add Orange Element (Below)</button>
+
+    <div id="dynamic-element-container">
+
+    </div>
+    <script type="text/javascript">
+        function createNewElement(color, append) {
+            var newElement = document.createElement("div");
+            newElement.className = "added-element " + color;
+            var buttonElement = document.createElement('button');
+            buttonElement.innerHTML = "Click Me to Remove!";
+            buttonElement.setAttribute("onclick", "removeElement(this.parentElement)");
+            newElement.appendChild(buttonElement);
+
+            var containerDiv = document.getElementById("dynamic-element-container");
+            if (append) {
+                containerDiv.appendChild(newElement);
+            }
+            else
+            {
+                containerDiv.insertBefore(newElement, containerDiv.childNodes[0]);
+            }
+        }
+
+        function removeElement(element) {
+            element.parentElement.removeChild(element);
+        }
+
+    </script>
+
+    <h3>Sources:</h3>
+    <ul>
+        <li><a href="http://www.w3schools.com/js/js_ex_dom.asp">JavaScript HTML Object examples</a></li>
+    </ul>
     <footer class="site-footer">
 
         <h6><span class="site-footer-credits"><a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by
