@@ -1,0 +1,39 @@
+.red {
+    background-color: #ff0000;
+    padding: 20px;
+}
+
+.transition-color {
+    transition: background-color 5s;
+    height:200px;
+    width: 200px;
+
+}
+
+.transition-side {
+    padding: 20px;
+    position: relative;
+    left: 0;
+    width: 100px;
+    background-color: #42b3f4;
+    transition: left 5s;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    text-align: center;
+}
+
+.spin {
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}

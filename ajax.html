@@ -30,9 +30,7 @@
                     <li><a href="css3ta.html">CSS3 Transistions and Animations</a></li>
                     <li><a href="jsevents.html">JavaScript Events</a></li>
                     <li><a href="tags.html">HTML5 Tags</a></li>
-                    <li><a href="transitions.html">CSS3 Transitions</a></li>
                     <li><a href="animations.html">CSS3 Animations</a></li>
-                    <li><a href="transforms.html">CSS3 Transforms</a></li>
 
                 </ul>
             </li>
@@ -160,6 +158,105 @@ nobleContainer.insertAdjacentHTML('beforeend', htmlString);
            nobleContainer.insertAdjacentHTML('beforeend', htmlString);
        }
     </script>
+
+    <h2>Using AJAX with an API</h2>
+
+    <p>Here is an axample of XMLHTTPRequest consuming a JSON web service </p>
+
+    <p>Type the zip code for which you would like to see the weather:</p>
+    <input type="text" name="zipCode">
+    <button type="button" onclick="fetchWeatherData()">Get Weather</button>
+    <br>
+    <br>
+    <label><strong>City Name:</strong></label> <span id="city-label"></span>
+    <br>
+    <label><strong>Current Weather:</strong></label> <span id="current-weather-label"></span><br>
+
+    <h4>Retreiving weather with Zip code</h4>
+
+    <pre><code data-language="javascript">function fetchWeatherData() {
+    var zipCode = document.querySelector("input[name='zipCode']").value;
+    if (zipCode) {
+        console.log("zipCode:", zipCode);
+        httpRequest = new XMLHttpRequest();
+
+        if (!httpRequest) {
+        return;
+        }
+        httpRequest.onreadystatechange = parseWeatherData;
+        httpRequest.open
+            ('GET', 'https://api.wunderground.com/api/3b345a3fea42ac03/conditions/q/'
+            + zipCode + '.json');
+        httpRequest.send();
+    }
+}</code></pre>
+    <h4>Parsing JSON Info</h4>
+
+    <pre><code data-language="javascript">function parseWeatherData() {
+    console.log("parsing");
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+        if (httpRequest.status === 200) {
+            try {
+                var data = JSON.parse(httpRequest.responseText);
+                console.log(data);
+                document.querySelector("#city-label").innerText =
+                    data["current_observation"]["display_location"]["full"];
+                document.querySelector("#current-weather-label").innerText =
+                    data["current_observation"]["weather"];
+            }
+            catch (e) {
+                console.log(e);
+                console.log(httpRequest.responseText);
+                alert("The response was not valid JSON.");
+            }
+        } else {
+            alert('There was a problem with the request.');
+        }
+    }
+}</code></pre>
+
+    <script>
+
+        function fetchWeatherData() {
+            var zipCode = document.querySelector("input[name='zipCode']").value;
+            if (zipCode) {
+                console.log("zipCode:", zipCode);
+                httpRequest = new XMLHttpRequest();
+
+                if (!httpRequest) {
+                    return;
+                }
+                httpRequest.onreadystatechange = parseWeatherData;
+                httpRequest.open('GET', 'https://api.wunderground.com/api/3b345a3fea42ac03/conditions/q/' + zipCode + '.json');
+                httpRequest.send();
+            }
+        }
+
+        function parseWeatherData() {
+            console.log("parsing");
+            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                if (httpRequest.status === 200) {
+                    try {
+                        var data = JSON.parse(httpRequest.responseText);
+                        console.log(data);
+                        document.querySelector("#city-label").innerText = data["current_observation"]["display_location"]["full"];
+                        document.querySelector("#current-weather-label").innerText = data["current_observation"]["weather"];
+                    }
+                    catch (e) {
+                        console.log(e);
+                        console.log(httpRequest.responseText);
+                        alert("The response was not valid JSON.");
+                    }
+                } else {
+                    alert('There was a problem with the request.');
+                }
+            }
+        }
+    </script>
+
+
+
+
 
     <footer class="site-footer">
 

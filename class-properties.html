@@ -30,20 +30,170 @@
                     <li><a href="css3ta.html">CSS3 Transistions and Animations</a></li>
                     <li><a href="jsevents.html">JavaScript Events</a></li>
                     <li><a href="tags.html">HTML5 Tags</a></li>
-                    <li><a href="transitions.html">CSS3 Transitions</a></li>
                     <li><a href="animations.html">CSS3 Animations</a></li>
-                    <li><a href="transforms.html">CSS3 Transforms</a></li>
 
                 </ul>
             </li>
         </ul>
     </nav>
-
-
 </section>
 
 <section class="main-content">
-    <h1>Coming Soon</h1>
+    <div class="mainPage">
+        <div class="colorClass">
+
+
+            <h2>Manipulating CSS Class Properties Using JavaScript:</h2>
+
+            <p>Manipulating CSS with JavaScript is a fairly simple process.<p>
+            <p>To change the style of an HTML element, use this syntax:</p>
+            <pre style="width: 95%; margin: auto"><code data-language="css">document.getElementById(id).style.property = new style</code></pre>
+            <H3>Changing the Background Color</H3>
+            <pre style="width: 95%; margin: auto" ><code data-language="css">function getColor(color) {
+    document.body.style.background = color;
+}</code></pre>
+
+            <button onclick="getColor('green')">Green</button>
+            <button onclick="getColor('blue')">Blue</button>
+            <button onclick="getColor('red')">Red</button>
+            <button onclick="getColor('yellow')">yellow</button>
+            <button onclick="getColor('0')">Remove Color</button><br>
+            <h3>Changing a Class Color</h3>
+
+            <pre style="width: 95%; margin: auto"><code data-language="css">function getClassColor(color) {
+    var text = document.getElementsByClassName('colorClass');
+    text[0].style.background = color;
+}</code></pre>
+
+
+        <p> Click the button to change the class color.</p>
+            <button onclick="getClassColor('lightblue');">Class Blue</button>
+            <button onclick="getClassColor('orange');">Class Orange</button>
+            <button onclick="getClassColor('pink');">Class Pink</button>
+            <button onclick="getClassColor('0');">Remove Class Color</button>
+        </div>
+
+
+        <h3>Adding and removing a class to a div</h3>
+
+        <p>Another way to manipulate CSS with JavaScript is to have CSS code setup for a certain class
+        and then adding that class to an element. That element will then take on the style of that class.</p>
+
+        <button onclick="addClass1()">Add Class1</button>
+            <button onclick="addClass2()">Add Class2</button>
+            <button onclick="addClass3()">Add Class3</button><br>
+
+            <button onclick="removeClass1()">Remove Class1</button>
+            <button onclick="removeClass2()">Remove Class2</button>
+            <button onclick="removeClass3()">Remove Class3</button><br><br>
+
+            <div id="class">Test Area</div>
+
+    <h4>Code:</h4>
+        <pre><code data-language="css">function addClass1() {
+    document.getElementById("class").classList.add("box");
+}
+
+function addClass2() {
+    document.getElementById("class").classList.add("class2");
+}
+
+function addClass3() {
+    document.getElementById("class").classList.add("thirdClass");
+}
+
+function removeClass1() {
+    document.getElementById("class").classList.remove("box");
+}
+
+function removeClass2() {
+    document.getElementById("class").classList.remove("class2");
+}
+
+function removeClass3() {
+    document.getElementById("class").classList.remove("thirdClass");
+}</code></pre>
+
+        <h4>CSS:</h4>
+        <pre><code data-language="css">.box {
+    width: 400px;
+    height: 50px;
+    padding: 15px;
+    border: 1px solid black;
+}
+
+.class2 {
+    background-color: coral;
+    color: white;
+}
+
+.thirdClass {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 25px;
+}</code></pre>
+
+            <script type="text/javascript">
+                function getColor(color) {
+                    document.body.style.background = color;
+                }
+
+                function getClassColor(color) {
+                    var text = document.getElementsByClassName('colorClass');
+                    text[0].style.background = color;
+                }
+
+                function addClass1() {
+                    document.getElementById("class").classList.add("box");
+                }
+
+                function addClass2() {
+                    document.getElementById("class").classList.add("class2");
+                }
+
+                function addClass3() {
+                    document.getElementById("class").classList.add("thirdClass");
+                }
+
+                function removeClass1() {
+                    document.getElementById("class").classList.remove("box");
+                }
+
+                function removeClass2() {
+                    document.getElementById("class").classList.remove("class2");
+                }
+
+                function removeClass3() {
+                    document.getElementById("class").classList.remove("thirdClass");
+                }
+</script>
+
+            <style>
+                .content{
+                    display: inline;
+                }
+                .box {
+                    width: 400px;
+                    height: 50px;
+                    padding: 15px;
+                    border: 1px solid black;
+                }
+
+                .class2 {
+                    background-color: coral;
+                    color: white;
+                }
+
+                .thirdClass {
+                    text-transform: uppercase;
+                    text-align: center;
+                    font-size: 25px;
+                }
+            </style>
+
+            <br><br>
+
+    </div>
 
 
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-us" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>CSS3 Transistions and Animations</title>
@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link href="stylesheets/theme.css" rel="stylesheet" type="text/css">
     <script src="javascripts/rainbow.js"></script>
+    <link rel="stylesheet" href="stylesheets/CSS3.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
 </head>
 <body>
@@ -30,9 +31,7 @@
                     <li><a href="css3ta.html">CSS3 Transistions and Animations</a></li>
                     <li><a href="jsevents.html">JavaScript Events</a></li>
                     <li><a href="tags.html">HTML5 Tags</a></li>
-                    <li><a href="transitions.html">CSS3 Transitions</a></li>
                     <li><a href="animations.html">CSS3 Animations</a></li>
-                    <li><a href="transforms.html">CSS3 Transforms</a></li>
 
                 </ul>
             </li>
@@ -43,7 +42,146 @@
 </section>
 
 <section class="main-content">
-    <h1>Coming Soon</h1>
+    <h1>Creating CSS3 Transitions and Animations in CSS and triggering them with JavaScript</h1>
+
+    <p>The idea behind using JavaScript to create transitions or animations is that CSS is what controls the animation.
+    The JavaScript is simply there trigger the CSS animation, rather than render a transition itself. It does this by
+    manipulating the CSS to pre set animations.</p>
+
+
+    <h4>Example 1</h4>
+    <p>In this example I simply call a color that the user chooses and set it to be the background color.
+        The element is already set to a class that is set to transition over 5 seconds but is only triggered by the
+    color change.</p>
+    <input type="color" value="#ff0000" id="color" style="height: 65px; width: 200px"><br><br>
+    <div class="red transition-color">
+        <button type="button" onclick="changeColor(this.parentElement, this)">Change Color!</button>
+    </div>
+
+    <h4>JavaScript</h4>
+    <pre><code data-language="JavaScript"> function changeColor(element, btn) {
+    var color = document.getElementById("color").value;
+    element.style.backgroundColor = color;
+    btn.setAttribute("onclick", "changeColor(this.parentElement, this)");
+}</code></pre>
+
+    <h4>CSS</h4>
+    <pre><code data-language="css">.transition-color {
+    transition: background-color 5s;
+    height:200px;
+    width: 200px;
+}</code></pre>
+
+    <h4>Example 2</h4>
+    <p>This example simply changes the left margin and button text on click as well as points to the function that will
+    change it back. Again it already is part of a class that allows it to transition over 5 seconds.</p>
+    <div class="transition-side">
+    <button type="button" onclick="moveLeft(this.parentElement, this)">Move right!</button>
+</div>
+
+    <h4>JavaScript</h4>
+    <pre><code data-language="JavaScript"> function moveLeft(element, btn) {
+    element.style.left = '500px';
+    btn.innerHTML = "Move Left!";
+    btn.setAttribute("onclick", "moveRight(this.parentElement, this)")
+}
+
+function moveRight(element, btn) {
+    element.style.left = '0px';
+    btn.innerHTML = "Move Right!";
+    btn.setAttribute("onclick", "moveLeft(this.parentElement, this)");
+}</code></pre>
+
+    <h4>CSS</h4>
+    <pre><code data-language="css">.transition-side {
+    padding: 20px;
+    position: relative;
+    left: 0;
+    width: 100px;
+    background-color: #ddd;
+    transition: left 5s;
+}</code></pre><br>
+
+    <h4>Example 3</h4>
+    <p>This example is similar to example 2 but has one extra peice to it. In this example we add a the class "spin" to
+    the element wich adds the CSS animation which allows it to spin. When clicked again the class is deleted and the circle
+    stops spinning.</p>
+    <div class="circle transition-side">
+        <button type="button" onclick="startSpin(this.parentElement, this)">Spin!</button>
+    </div> <br>
+
+    <pre><code data-language="JavaScript">function startSpin(element, btn) {
+    element.className += " spin";
+    btn.innerHTML = "Stop!";
+    btn.setAttribute("onclick", "stopSpin(this.parentElement, this)");
+}
+
+function stopSpin(element, btn) {
+    element.className = element.className.replace(" spin", "");
+    btn.innerHTML = "Spin!";
+    btn.setAttribute("onclick", "startSpin(this.parentElement, this)");
+        }</code></pre>
+
+    <pre><code data-language="css">.transition-side {
+    padding: 20px;
+    position: relative;
+    left: 0;
+    width: 100px;
+    background-color: #42b3f4;
+    transition: left 5s;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    text-align: center;
+}
+
+.spin {
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+}</code></pre>
+    <br>
+
+    <script data-language="javascript">
+        function changeColor(element, btn) {
+            var color = document.getElementById("color").value;
+            element.style.backgroundColor = color;
+            btn.setAttribute("onclick", "changeColor(this.parentElement, this)");
+        }
+
+        function moveLeft(element, btn) {
+            element.style.left = '500px';
+            btn.innerHTML = "Move Left!";
+            btn.setAttribute("onclick", "moveRight(this.parentElement, this)");
+        }
+
+        function moveRight(element, btn) {
+            element.style.left = '0px';
+            btn.innerHTML = "Move Right!";
+            btn.setAttribute("onclick", "moveLeft(this.parentElement, this)");
+        }
+
+        function startSpin(element, btn) {
+            element.className += " spin";
+            btn.innerHTML = "Stop!";
+            btn.setAttribute("onclick", "stopSpin(this.parentElement, this)");
+        }
+
+        function stopSpin(element, btn) {
+            element.className = element.className.replace(" spin", "");
+            btn.innerHTML = "Spin!";
+            btn.setAttribute("onclick", "startSpin(this.parentElement, this)");
+        }
+    </script>
 
 
 
