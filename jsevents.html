@@ -41,8 +41,60 @@
 </section>
 
 <section class="main-content">
-    <h1>Coming Soon</h1>
+    <h1>Standard JavaScript Events</h1>
 
+    <p>JavaScript events allow us to execute code based on the timing of something happening. For instance,
+        when a page loads, when a button gets clicked, when the user swipes left on the screen, etc.
+        The events help web applications feel immersive and resonsive.</p>
+    <p>Here a few examples to help show these events.</p>
+
+    <h3>Example 1</h3>
+    <p>This example is a very simple event that prints a message with the onClick event</p>
+
+    <button onclick="myFunction()">Click me</button>
+
+    <div id="demo"></div>
+
+    <script>
+        function myFunction() {
+            document.getElementById("demo").innerHTML = "onClick event successful!";
+        }
+    </script>
+
+
+    <h4>html</h4>
+    <pre><code data-language="html"><button onclick="myFunction()">Click me</button></code></pre>
+
+    <h4>JavaScript</h4>
+    <pre><code data-language="JavaScript"></code>function myFunction() {
+    document.getElementById("demo").innerHTML = "onClick event successful!";
+}</pre>
+
+    <h3>Example 2</h3>
+    <p>This example uses the onmouseover, onmouseout, onmousedown, onmouseup </p>
+    <p>It will change different colors for a mouse hover, click down, releasing a click, and moving the mouse off of the box.</p>
+    <div id="box" style="height: 200px; width: 200px; background-color: #8F8F8F" onmouseover="getColor('blue')"
+         onmouseout="getColor('#8F8F8F')" onmousedown="getColor('red')"
+         onmouseup="getColor('green')"></div>
+
+    <h4>html</h4>
+    <pre><code data-language="html">div id="box" style="height: 200px; width: 200px; background-color: #8F8F8F"
+    onmouseover="getColor('blue')"
+    onmouseout="getColor('#8F8F8F')"
+    onmousedown="getColor('red')"
+    onmouseup="getColor('green')">
+    </div></code></pre>
+
+    <script>
+        function getColor(color) {
+            document.getElementById("box").style.background = color;
+        }
+    </script>
+
+    <h4>JavaScript</h4>
+    <pre><code data-language="JavaScript">function getColor(color) {
+    document.getElementById("box").style.background = color;
+}</code></pre>
 
 
     <footer class="site-footer">
