@@ -10,6 +10,7 @@
     <link href="stylesheets/theme.css" rel="stylesheet" type="text/css">
     <script src="javascripts/rainbow.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/events.css" media="screen">
 </head>
 <body>
 <section class="page-header">
@@ -95,13 +96,113 @@
     document.getElementById("box").style.background = color;
 }</code></pre>
 
+    <h3>Example 3</h3>
+    <p>
+        This code creates a ball that is touch friendly and allows you to drag it all around. It uses the
+    <code>onDrag</code> and works much better in mobile than on a pc.
+    </p>
+    <button onclick="createball()">Click me to create a ball.</button><br>
+
+    <h4>JavaScript</h4>
+
+    <pre><code data-language="JavaScript">function createball() {
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    console.log("w:", w, "h:", h);
+
+    var ball        = document.createElement('div');
+    ball.className  = "ball";
+    ball.style.left = ((w / 2) - 25) + "px";
+    ball.style.top  = ((h / 2) - 25) + "px";
+    ball.ondrag     = handleDrag;
+    ball.setAttribute('draggable', 'true');
+    ball.addEventListener('touchmove', handleTouchMove);
+    document.body.appendChild(ball);
+}
+
+function handleDrag(event) {
+    var x = event.clientX;     // Get the horizontal coordinate
+    var y = event.clientY;     // Get the vertical coordinate
+
+    console.log("drag", x, y);
+
+    if (x && y) {
+        this.style.left = (x - 25) + "px";
+        this.style.top  = (y - 25) + "px";
+    }
+}
+
+function handleTouchMove(event) {
+    var touch = event.targetTouches[0];
+
+    // Place element where the finger is
+    this.style.left = touch.clientX-25 + 'px';
+    this.style.top = touch.clientY-25 + 'px';
+    event.preventDefault();
+}</code></pre>
+
+    <h4>CSS</h4>
+
+    <pre><code data-language="CSS">.ball {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    z-index: 1000;
+}</code></pre>
+
+
+
+    <script>
+        function createball() {
+            var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+            var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+            console.log("w:", w, "h:", h);
+
+            var ball        = document.createElement('div');
+            ball.className  = "ball";
+            ball.style.left = ((w / 2) - 25) + "px";
+            ball.style.top  = ((h / 2) - 25) + "px";
+            ball.ondrag     = handleDrag;
+            ball.setAttribute('draggable', 'true');
+            ball.addEventListener('touchmove', handleTouchMove);
+            document.body.appendChild(ball);
+        }
+
+        function handleDrag(event) {
+            var x = event.clientX;     // Get the horizontal coordinate
+            var y = event.clientY;     // Get the vertical coordinate
+
+            console.log("drag", x, y);
+
+            if (x && y) {
+                this.style.left = (x - 25) + "px";
+                this.style.top  = (y - 25) + "px";
+            }
+        }
+
+        function handleTouchMove(event) {
+            var touch = event.targetTouches[0];
+
+            // Place element where the finger is
+            this.style.left = touch.clientX-25 + 'px';
+            this.style.top = touch.clientY-25 + 'px';
+            event.preventDefault();
+        }
+
+    </script>
+
 
     <footer class="site-footer">
 
         <h6><span class="site-footer-credits"><a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by
             <a href="https://twitter.com/jasonlong">Jason Long</a>.</span></h6>
     </footer>
-
 </section>
 
 
